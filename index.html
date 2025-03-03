@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Celebration</title>
+  <style>
+    body {
+      font-family: 'Caveat', cursive;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: url('image.png') center/cover fixed no-repeat; 
+      overflow: hidden;
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    #message {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #000000; /* Default to black text color */
+      text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5); /* White text shadow for contrast */
+    }
+    input {
+      font-size: 18px;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      background: rgba(255, 255, 255, 0.3);
+      color: #000000; /* Default to black text color */
+      outline: none;
+    }
+    button {
+      font-family: 'Caveat', cursive;
+      font-size: 20px;
+      padding: 15px 30px;
+      margin: 15px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #4caf50;
+      color: #000000; /* Default to black text color */
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    #resultMessage {
+      font-size: 24px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="message">Enter your name, surname, and birthday in the format of day/month/year:</div>
+<input type="text" id="nameInput" placeholder="Name">
+<input type="text" id="surnameInput" placeholder="Surname">
+<input type="date" id="birthdayInput">
+<input type="color" id="colorInput" value="#000000" onchange="changeTextColor(this.value)">
+<button id="submitInfo" onclick="checkBirthday()">Submit</button>
+<p id="resultMessage"></p>
+
+<script>
+  function checkBirthday() {
+    var name = document.getElementById('nameInput').value;
+    var surname = document.getElementById('surnameInput').value;
+    var birthdayInput = document.getElementById('birthdayInput').value;
+    var textColor = document.getElementById('colorInput').value;
+
+    if (birthdayInput === '2004-03-03') {  // Check if entered birthday is 30 January 2005
+      var age = calculateAge(new Date(birthdayInput));
+
+      document.getElementById("resultMessage").innerHTML = "Happy " + age + "th Birthday, Angel " + name + " " + surname + "! 🎉🥳🎂";
+      document.getElementById("resultMessage").style.color = textColor;  // Set celebration message color
+    } else {
+      alert('Sorry, today is not the specified birthday (03/03/2004).');
+    }
+  }
+
+  function calculateAge(birthday) {
+    var today = new Date();
+    var age = today.getFullYear() - birthday.getFullYear();
+
+    return age;
+  }
+
+  function changeTextColor(color) {
+    document.getElementById('resultMessage').style.color = color;
+  }
+</script>
+
+</body>
+</html>
+
+
+
